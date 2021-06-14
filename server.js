@@ -1,17 +1,14 @@
 const express = require('express');
-const helmet = require("helmet");
-
-const { getMethod } = require('./middlewares/methods');
+const helmet = require('helmet');
+const routes = require('./routes');
 
 const app = express();
 app.use(helmet());
 
-app.get('/', getMethod, (req, res) => {
-  res.json({ message: 'OK!' });
-});
+app.use(routes);
 
-app.get('/users', (req, res) => {
-  res.json({ message: 'users!' });
+app.get('/', (req, res) => {
+  res.json({ message: 'OK!' });
 });
 
 module.exports = app;
